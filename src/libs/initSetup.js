@@ -16,5 +16,4 @@ export const createRoles = async () =>{
     }catch(error){
         console.log(error)
     }
-
 }
