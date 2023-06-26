@@ -1,18 +1,18 @@
 import {Router} from 'express'
 import {createCategory, getCategorys, getCategorysById, updateCategory, deleteCategory} from '../controllers/category.controllers'
-import {verifyToken} from '../middlewares'
+import {authJwt} from '../middlewares'
 const router = Router()
 
 
 router.get("/", getCategorys)
 
-router.get("/:CategoryId",verifyToken, getCategorysById)
+router.get("/:CategoryId",[authJwt.verifyToken, authJwt.isModerator], getCategorysById)
 
-router.post("/", createCategory)
+router.post("/",[authJwt.verifyToken, authJwt.isModerator], createCategory)
 
-router.delete("/:CategoryId", deleteCategory)
+router.delete("/:CategoryId",[authJwt.verifyToken, authJwt.isAdmin], deleteCategory)
 
-router.put("/:CategoryId", updateCategory)
+router.put("/:CategoryId",[authJwt.verifyToken, authJwt.isModerator], updateCategory)
 
 
 export default router;

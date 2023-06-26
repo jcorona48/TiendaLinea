@@ -1,4 +1,5 @@
 import Role from '../models/Role'
+import Category from '../models/Category'
 
 export const createRoles = async () =>{
     
@@ -17,3 +18,20 @@ export const createRoles = async () =>{
         console.log(error)
     }
 }
+
+export const createCategorys = async () =>{
+    
+    try{
+        const categorysCount = await Category.estimatedDocumentCount()
+        if(categorysCount>0) return;
+    
+        const values = await Promise.all([
+            new Category({name: "General"}).save()
+        ]);
+    
+        console.log(values)
+    }catch(error){
+        console.log(error)
+    }
+}
+

@@ -1,6 +1,6 @@
 import {Schema, model} from 'mongoose'
 
-const producSchema = new Schema({
+const productSchema = new Schema({
     name: {
         type: String,
         unique: true
@@ -16,7 +16,7 @@ const producSchema = new Schema({
         type: Number,
         required: true
     },
-    category: [{
+    categorys: [{
         ref: "Category",
         type: Schema.Types.ObjectId
     }]
@@ -27,4 +27,4 @@ const producSchema = new Schema({
 })
 
 
-export default model('Product',producSchema);
+export default model('Product',productSchema);

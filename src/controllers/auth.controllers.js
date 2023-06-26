@@ -19,7 +19,7 @@ export const signup = async (req, res) => {
             if (foundRoles.length !== roles.length) {
                 const foundRoleNames = foundRoles.map((role) => role.name);
                 const nonexistentRoles = roles.filter(
-                  (role) => !foundRoleNames.includes(role)
+                (role) => !foundRoleNames.includes(role)
                 );
         
                 return res.status(404).json({ message: `Los roles siguientes no existen: ${nonexistentRoles.join(', ')}` });
@@ -62,5 +62,8 @@ export const signin = async (req, res) =>{
         expiresIn: 86400
     })
 
-    res.json(token)
+    res.json({token: token})
 }
+
+
+
